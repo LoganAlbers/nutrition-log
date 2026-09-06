@@ -55,6 +55,32 @@ class Person:
     def calc_carbs(self):
         return (self.calc_calories() - ((self.calc_protein() * 4) + (self.calc_fat() * 9))) / 4
 
+    def display_stats(self):
+        print("YOUR INFORMATION: ")
+        print("------------------")
+        print(f"Age: {self.age:.0f} years old")
+        print("Sex: " + str(self.sex))
+        print("Height: " + str(self.height)+ " inches")
+        print("Weight: " + str(self.weight) + " lbs")
+        print("Activity Level: " + str(self.activity_level))
+        print("Goal Weight: " + str(self.goal_weight) + " lbs")
+
+    def display_nutri_est(self):
+        print("NUTRITION ESTIMATES: ")
+        print("------------------")
+        print(f"BMI: {self.calc_bmi():.2f}")
+        print(f"BMR: {self.calc_bmr():.2f} calories")
+        print(f"TDEE: {self.calc_tdee():.2f} calories")
+        print(f"Suggested caloric intake per day: {self.calc_calories():.0f} calories")
+
+    def display_macro_est(self):
+        print("MACRONUTRIENT ESTIMATES: ")
+        print("------------------")
+        print(f"Suggested protein intake per day: {self.calc_protein():.0f} grams")
+        print(f"Suggested fat intake per day: {self.calc_fat():.0f} grams")
+        print(f"Suggested carbohydrate intake per day: {self.calc_carbs():.0f} grams")
+
+
 
 # out of the person class
 
@@ -65,6 +91,13 @@ class Food:
         self.protein = protein
         self.fat = fat
         self.carbs = carbs
+
+    def display_meal(self):
+        print(
+            f"{self.name} has {self.calories:0.2f} calories. This meal has {self.protein:0.2f} grams of protein, "
+            f"{self.fat:0.2f} grams of fat, and {self.carbs:0.2f} grams of carbs"
+            )
+
 
 
 
@@ -113,35 +146,19 @@ def main():
 
     # creates an instance of Person
     person1 = Person(age, sex, height, weight, activity_level, goal_weight)
-
+    meal1 = Food("Chicken", 200, 80, 12, 15)
     # prints the characters of the Person class
     print("=======================")
     print("==== NUTRITION LOG ====")
     print("=======================")
-    print("YOUR INFORMATION: ")
-    print("------------------")
-    print(f"Age: {person1.age:.0f} years old")
-    print("Sex: " + str(person1.sex))
-    print("Height: " + str(person1.height)+ " inches")
-    print("Weight: " + str(person1.weight) + " lbs")
-    print("Activity Level: " + str(person1.activity_level))
-    print("Goal Weight: " + str(person1.goal_weight) + " lbs")
-
     print("")
-    print("NUTRITION ESTIMATES: ")
-    print("------------------")
-    print(f"BMI: {person1.calc_bmi():.2f}")
-    print(f"BMR: {person1.calc_bmr():.2f} calories")
-    print(f"TDEE: {person1.calc_tdee():.2f} calories")
-    print(f"Suggested caloric intake per day: {person1.calc_calories():.0f} calories")
-
+    person1.display_stats()
     print("")
-    print("MACRONUTRIENT ESTIMATES: ")
-    print("------------------")
-    print(f"Suggested protein intake per day: {person1.calc_protein():.0f} grams")
-    print(f"Suggested fat intake per day: {person1.calc_fat():.0f} grams")
-    print(f"Suggested carbohydrate intake per day: {person1.calc_carbs():.0f} grams")
-
+    person1.display_nutri_est()
+    print("")
+    person1.display_macro_est()
+    print("")
+    meal1.display_meal()
 
 
 if __name__ == "__main__":
